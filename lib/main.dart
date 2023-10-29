@@ -26,6 +26,15 @@ class DynamicPopupMenuButton extends StatefulWidget {
   _DynamicPopupMenuButtonState createState() => _DynamicPopupMenuButtonState();
 }
 
+List<ComputerGroup> computerGroups = [
+  generateComputerGroup('Gallery', 8),
+  generateComputerGroup('Edit1', 1),
+  generateComputerGroup('Micro', 3),
+  generateComputerGroup('Internet', 1),
+  generateComputerGroup('Edit2', 1),
+  generateComputerGroup('Graphics', 7),
+];
+
 class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   final List<String> options = ['Custom: Name', 'Maintenance', 'Rendering', 'Available'];
   Color? _iconColor1 = Colors.black; // Default color for the 1 button
@@ -600,7 +609,7 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   }
   Color? _getColorFromOption(String option) {
     switch (option) {
-      case 'Custom: Name':
+      case 'Busy':
         return Colors.blue;
       case 'Maintenance':
         return Colors.red;
@@ -614,12 +623,105 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   }
 }
 
+ComputerGroup generateComputerGroup(String name, int computersAmount){
+  List<Computer> ls = [];
+  for (var i = 0; i < computersAmount; ++i) {
+    ls.add(Computer(state: ComputerState.defaultState));
+  }
+  return ComputerGroup(ComputerGroupMetaData(name), ls);
+}
+
+Color getColorFromState(ComputerState state) {
+  switch (state) {
+    case ComputerState.busy:
+      return Colors.blue;
+    case ComputerState.maintenance:
+      return Colors.red;
+    case ComputerState.rendering:
+      return Colors.orange;
+    case ComputerState.available:
+      return Colors.green;
+    default:
+      return Colors.black;
+  }
+}
+
+enum ComputerState {
+  defaultState,
+  busy,
+  maintenance,
+  rendering,
+  available
+}
+
+Map menuOptionsMap = {
+  'Busy' : ComputerState.busy,
+  'Maintenance' : ComputerState.maintenance,
+  'Rendering' : ComputerState.rendering,
+  'Available' : ComputerState.available,
+};
+
+class Computer {
+  late ComputerGroup? group;
+  late String name;
+  late ComputerState state;
+  Computer({this.name = "default_name", required this.state});
+  void setState(ComputerState state) => this.state = state;
+}
 
 
+class ComputerGroupMetaData {
+  late String name;
+  ComputerGroupMetaData(this.name);
+}
 
+class ComputerGroup {
+  late ComputerGroupMetaData metaData;
+  late List<Computer> computers;
 
+  ComputerGroup(this.metaData, this.computers) {
+    for (var i = 0; i < computers.length; ++i) {
+      computers[i].name = '${metaData.name} ${i + 1}';
+      computers[i].group = this;
+    }
+  }
+}
 
+class ComputerButton extends StatefulWidget {
+  const ComputerButton({super.key, required this.computer});
+  final Computer computer;
 
+  @override
+  State<ComputerButton> createState() => _ComputerButtonState();
+}
+
+class _ComputerButtonState extends State<ComputerButton> {
+  Color buttonColor = Colors.black;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<String>(
+      onSelected: (String result) {
+        setState(() {
+          buttonColor = getColorFromState(widget.computer.state);
+        });
+      },
+      itemBuilder: (BuildContext context) {
+        return menuOptionsMap.entries.toList().map((entry) {
+          return PopupMenuItem<String>(
+            value: entry.key.toString(),
+            child: Text(entry.key.toString()),
+          );
+        }).toList();
+      },
+      child: IconButton(
+        iconSize: 30.0,
+        icon: Icon(Icons.computer, color: getColorFromState(widget.computer.state)),
+        onPressed: null, // The popup menu will be shown when the button is tapped
+      ),
+    );
+  }
+}
 
 
 
