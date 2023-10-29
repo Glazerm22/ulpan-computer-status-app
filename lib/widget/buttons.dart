@@ -6,7 +6,6 @@ class BasicIconButton extends StatefulWidget {
   final double? iconSize;
   final VoidCallback? onPressed;
   final IconData? icon;
-  final Color? _iconColor;
 
   @override
   State<BasicIconButton> createState() => _BasicIconButtonState();
