@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:ulpan_computer_status_controller/widget/buttons.dart';
 
 void main() => runApp(MaterialApp(
-  home: Home(),
-));
+      home: Home(),
+    ));
 
 class Home extends StatelessWidget {
   @override
@@ -12,7 +11,7 @@ class Home extends StatelessWidget {
       backgroundColor: Colors.grey[900],
       appBar: AppBar(
         backgroundColor: Colors.grey[800],
-        title: Text('Ulpan Computer Manager'),
+        title: const Text('Ulpan Computer Manager'),
         centerTitle: true,
       ),
       body: Center(
@@ -21,13 +20,13 @@ class Home extends StatelessWidget {
     );
   }
 }
+
 class DynamicPopupMenuButton extends StatefulWidget {
   @override
   _DynamicPopupMenuButtonState createState() => _DynamicPopupMenuButtonState();
 }
 
 class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
-
   List<ComputerGroup> computerGroups = [
     generateComputerGroup('Gallery', 8),
     generateComputerGroup('Edit1', 1),
@@ -37,8 +36,9 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
     generateComputerGroup('Graphics', 7),
   ];
 
-  ComputerGroup getGroupByName(String name){
-    return computerGroups.firstWhere((element) => element.metaData.name == 'Gallery');
+  ComputerGroup getGroupByName(String name) {
+    return computerGroups
+        .firstWhere((element) => element.metaData.name == 'Gallery');
   }
 
   @override
@@ -46,43 +46,58 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        Text(
+          'ENTRANCE',
+          style: TextStyle(
+            color: Colors.grey[400],
+            fontSize: 18.0,
+            letterSpacing: 1.0,
+          ),
+        ),
+        const Center(
+          child: Icon(
+            size: 50.0,
+            Icons.sensor_door_outlined,
+            color: Colors.white,
+          ),
+        ),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
             buildGalleryGroup(getGroupByName('Gallery')),
-            SizedBox(width: 31),
+            const SizedBox(width: 31),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 buildEdit1Group((getGroupByName('Edit1'))),
-                SizedBox(height: 48.0),
+                const SizedBox(height: 48.0),
               ],
             ),
-            SizedBox(width: 2),
+            const SizedBox(width: 2),
             buildMicroGroup((getGroupByName('Micro'))),
           ],
         ),
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 293),
+            const SizedBox(width: 293),
             buildInternetGroup((getGroupByName('Internet'))),
           ],
         ),
-        SizedBox(height: 20),
+        const SizedBox(height: 20),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 293),
+            const SizedBox(width: 293),
             buildEdit2Group((getGroupByName('Edit2'))),
           ],
         ),
-        SizedBox(height: 1),
+        const SizedBox(height: 1),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(width: 149), // Add space between the containers
+            const SizedBox(width: 149), // Add space between the containers
             buildGraphicsGroup((getGroupByName('Graphics'))),
           ],
         ),
@@ -93,8 +108,8 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   Container buildGalleryGroup(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-      child:Column(
+      padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+      child: Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
@@ -122,16 +137,15 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   Container buildEdit1Group(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-      child:
-      ComputerButton(computer: group.computers[0]),
+      padding: const EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+      child: ComputerButton(computer: group.computers[0]),
     );
   }
 
   Container buildMicroGroup(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
           Row(
@@ -144,7 +158,7 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(width: 48.0),
+              const SizedBox(width: 48.0),
               ComputerButton(computer: group.computers[2]),
             ],
           ),
@@ -156,11 +170,11 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   Container buildInternetGroup(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(width: 48.0),
+          const SizedBox(width: 48.0),
           ComputerButton(computer: group.computers[0]),
         ],
       ),
@@ -170,11 +184,11 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   Container buildEdit2Group(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SizedBox(width: 48.0),
+          const SizedBox(width: 48.0),
           ComputerButton(computer: group.computers[0]),
         ],
       ),
@@ -184,21 +198,21 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   Container buildGraphicsGroup(ComputerGroup group) {
     return Container(
       color: Colors.grey[850],
-      padding: EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(10.0),
       child: Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               ComputerButton(computer: group.computers[0]),
-              SizedBox(width: 192.0),
+              const SizedBox(width: 192.0),
             ],
           ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               ComputerButton(computer: group.computers[1]),
-              SizedBox(width: 192.0),
+              const SizedBox(width: 192.0),
             ],
           ),
           Row(
@@ -217,8 +231,7 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   }
 }
 
-
-ComputerGroup generateComputerGroup(String name, int computersAmount){
+ComputerGroup generateComputerGroup(String name, int computersAmount) {
   List<Computer> ls = [];
   for (var i = 0; i < computersAmount; ++i) {
     ls.add(Computer(state: ComputerState.defaultState));
@@ -226,10 +239,10 @@ ComputerGroup generateComputerGroup(String name, int computersAmount){
   return ComputerGroup(ComputerGroupMetaData(name), ls);
 }
 
-Color getColorFromState(ComputerState state) {
+Color? getColorFromState(ComputerState state) {
   switch (state) {
     case ComputerState.busy:
-      return Colors.blue;
+      return Colors.deepPurple;
     case ComputerState.maintenance:
       return Colors.red;
     case ComputerState.rendering:
@@ -237,35 +250,32 @@ Color getColorFromState(ComputerState state) {
     case ComputerState.available:
       return Colors.green;
     default:
-      return Colors.black;
+      return Colors.grey[850];
   }
 }
 
-enum ComputerState {
-  defaultState,
-  busy,
-  maintenance,
-  rendering,
-  available
-}
+enum ComputerState { defaultState, busy, maintenance, rendering, available }
 
 Map menuOptionsMap = {
-  'Busy' : ComputerState.busy,
-  'Maintenance' : ComputerState.maintenance,
-  'Rendering' : ComputerState.rendering,
-  'Available' : ComputerState.available,
+  'Busy': ComputerState.busy,
+  'Maintenance': ComputerState.maintenance,
+  'Rendering': ComputerState.rendering,
+  'Available': ComputerState.available,
 };
 
 class Computer {
   late ComputerGroup? group;
   late String name;
   late ComputerState state;
+
   Computer({this.name = "default_name", required this.state});
+
   void setState(ComputerState state) => this.state = state;
 }
 
 class ComputerGroupMetaData {
   late String name;
+
   ComputerGroupMetaData(this.name);
 }
 
@@ -283,6 +293,7 @@ class ComputerGroup {
 
 class ComputerButton extends StatefulWidget {
   const ComputerButton({super.key, required this.computer});
+
   final Computer computer;
 
   @override
@@ -308,13 +319,16 @@ class _ComputerButtonState extends State<ComputerButton> {
           );
         }).toList();
       },
-      child: IconButton(
-        iconSize: 30.0,
-        icon: Icon(Icons.computer, color: getColorFromState(widget.computer.state)),
-        onPressed: null, // The popup menu will be shown when the button is tapped
+      child: Container(
+        color: getColorFromState(widget.computer.state),
+        padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
+        child: const IconButton(
+          iconSize: 30.0,
+          icon: Icon(Icons.computer, color: Colors.black),
+          onPressed:
+              null, // The popup menu will be shown when the button is tapped
+        ),
       ),
     );
   }
 }
-
-
