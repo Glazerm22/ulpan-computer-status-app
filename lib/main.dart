@@ -27,31 +27,7 @@ class DynamicPopupMenuButton extends StatefulWidget {
 }
 
 class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
-<<<<<<< Updated upstream
-  final List<String> options = ['Custom: Name', 'Maintenance', 'Rendering', 'Available'];
-  Color? _iconColor1 = Colors.black; // Default color for the 1 button
-  Color? _iconColor2 = Colors.black; // Default color for the 2 button
-  Color? _iconColor3 = Colors.black; // Default color for the 3 button
-  Color? _iconColor4 = Colors.black; // Default color for the 4 button
-  Color? _iconColor5 = Colors.black; // Default color for the 5 button
-  Color? _iconColor6 = Colors.black; // Default color for the 6 button
-  Color? _iconColor7 = Colors.black; // Default color for the 7 button
-  Color? _iconColor8 = Colors.black; // Default color for the 8 button
-  Color? _iconColor9 = Colors.black; // Default color for the 9 button
-  Color? _iconColor10 = Colors.black; // Default color for the 10 button
-  Color? _iconColor11 = Colors.black; // Default color for the 11 button
-  Color? _iconColor12 = Colors.black; // Default color for the 12 button
-  Color? _iconColor13 = Colors.black; // Default color for the 13 button
-  Color? _iconColor14 = Colors.black; // Default color for the 14 button
-  Color? _iconColor15 = Colors.black; // Default color for the 15 button
-  Color? _iconColor16 = Colors.black; // Default color for the 16 button
-  Color? _iconColor17 = Colors.black; // Default color for the 17 button
-  Color? _iconColor18 = Colors.black; // Default color for the 18 button
-  Color? _iconColor19 = Colors.black; // Default color for the 19 button
-  Color? _iconColor20 = Colors.black; // Default color for the 20 button
-  Color? _iconColor21 = Colors.black; // Default color for the 21 button
 
-=======
   List<ComputerGroup> computerGroups = [
     generateComputerGroup('Gallery', 8),
     generateComputerGroup('Edit1', 1),
@@ -64,293 +40,81 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
   ComputerGroup getGroupByName(String name){
     return computerGroups.firstWhere((element) => element.metaData.name == 'Gallery');
   }
->>>>>>> Stashed changes
 
   @override
   Widget build(BuildContext context) {
     return Column(
-        mainAxisSize: MainAxisSize.min,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            buildGalleryGroup(getGroupByName('Gallery')),
+            SizedBox(width: 31),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                buildEdit1Group((getGroupByName('Edit1'))),
+                SizedBox(height: 48.0),
+              ],
+            ),
+            SizedBox(width: 2),
+            buildMicroGroup((getGroupByName('Micro'))),
+          ],
+        ),
+        SizedBox(height: 1),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(width: 293),
+            buildInternetGroup((getGroupByName('Internet'))),
+          ],
+        ),
+        SizedBox(height: 20),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(width: 293),
+            buildEdit2Group((getGroupByName('Edit2'))),
+          ],
+        ),
+        SizedBox(height: 1),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(width: 149), // Add space between the containers
+            buildGraphicsGroup((getGroupByName('Graphics'))),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Container buildGalleryGroup(ComputerGroup group) {
+    return Container(
+      color: Colors.grey[850],
+      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
+      child:Column(
         children: [
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-<<<<<<< Updated upstream
-              Container(
-                color: Colors.purple[100],
-                padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor1 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor1),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor2 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor2),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor3 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor3),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor4 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor4),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor5 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor5),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor6 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor6),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor7 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor7),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                        PopupMenuButton<String>(
-                          onSelected: (String result) {
-                            setState(() {
-                              _iconColor8 = _getColorFromOption(result);
-                            });
-                          },
-                          itemBuilder: (BuildContext context) {
-                            return options.map((String option) {
-                              return PopupMenuItem<String>(
-                                value: option,
-                                child: Text(option),
-                              );
-                            }).toList();
-                          },
-                          child: IconButton(
-                            iconSize: 30.0,
-                            icon: Icon(Icons.computer, color: _iconColor8),
-                            onPressed: null, // The popup menu will be shown when the button is tapped
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-=======
-              buildGalleryGroup(getGroupByName('Gallery')),
->>>>>>> Stashed changes
-              SizedBox(width: 31),
-              Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-<<<<<<< Updated upstream
-                  Container(
-                      color: Colors.redAccent,
-                      padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-                      child:
-                      PopupMenuButton<String>(
-                        onSelected: (String result) {
-                          setState(() {
-                            _iconColor9 = _getColorFromOption(result);
-                          });
-                        },
-                        itemBuilder: (BuildContext context) {
-                          return options.map((String option) {
-                            return PopupMenuItem<String>(
-                              value: option,
-                              child: Text(option),
-                            );
-                          }).toList();
-                        },
-                        child: IconButton(
-                          iconSize: 30.0,
-                          icon: Icon(Icons.computer, color: _iconColor9),
-                          onPressed: null, // The popup menu will be shown when the button is tapped
-                        ),
-                      ),
-                  ),
-=======
-                  buildEdit1Group((getGroupByName('Edit1'))),
->>>>>>> Stashed changes
-                  SizedBox(height: 48.0),
-                ],
-              ),
-              SizedBox(width: 2),
-              buildMicroGroup((getGroupByName('Micro'))),
+              ComputerButton(computer: group.computers[0]),
+              ComputerButton(computer: group.computers[1]),
+              ComputerButton(computer: group.computers[2]),
+              ComputerButton(computer: group.computers[3]),
             ],
           ),
-          SizedBox(height: 1),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SizedBox(width: 293),
-              buildInternetGroup((getGroupByName('Internet'))),
-            ],
-          ),
-          SizedBox(height: 20),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(width: 293),
-              buildEdit2Group((getGroupByName('Edit2'))),
-            ],
-          ),
-          SizedBox(height: 1),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              SizedBox(width: 149), // Add space between the containers
-              buildGraphicsGroup((getGroupByName('Graphics'))),
+              ComputerButton(computer: group.computers[4]),
+              ComputerButton(computer: group.computers[5]),
+              ComputerButton(computer: group.computers[6]),
+              ComputerButton(computer: group.computers[7]),
             ],
           ),
         ],
-      );
-  }
-<<<<<<< Updated upstream
-=======
-
-  Container buildGalleryGroup(ComputerGroup group) {
-    return Container(
-        color: Colors.grey[850],
-        padding: EdgeInsets.fromLTRB(5.0, 10.0, 5.0, 10.0),
-        child:Column(
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ComputerButton(computer: group.computers[0]),
-                ComputerButton(computer: group.computers[1]),
-                ComputerButton(computer: group.computers[2]),
-                ComputerButton(computer: group.computers[3]),
-              ],
-            ),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ComputerButton(computer: group.computers[4]),
-                ComputerButton(computer: group.computers[5]),
-                ComputerButton(computer: group.computers[6]),
-                ComputerButton(computer: group.computers[7]),
-              ],
-            ),
-          ],
       ),
     );
   }
@@ -451,32 +215,9 @@ class _DynamicPopupMenuButtonState extends State<DynamicPopupMenuButton> {
       ),
     );
   }
-
->>>>>>> Stashed changes
-  Color? _getColorFromOption(String option) {
-    switch (option) {
-      case 'Custom: Name':
-        return Colors.blue;
-      case 'Maintenance':
-        return Colors.red;
-      case 'Rendering':
-        return Colors.orange;
-      case 'Available':
-        return Colors.green;
-      default:
-        return Colors.black;
-    }
-  }
 }
 
-<<<<<<< Updated upstream
 
-
-
-
-
-
-=======
 ComputerGroup generateComputerGroup(String name, int computersAmount){
   List<Computer> ls = [];
   for (var i = 0; i < computersAmount; ++i) {
@@ -575,7 +316,5 @@ class _ComputerButtonState extends State<ComputerButton> {
     );
   }
 }
->>>>>>> Stashed changes
-
 
 
