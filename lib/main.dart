@@ -251,18 +251,21 @@ Color? getColorFromState(ComputerState state) {
       return Colors.orange;
     case ComputerState.available:
       return Colors.green;
+    case ComputerState.hafifa:
+      return Colors.blue[200];
     default:
       return Colors.grey[850];
   }
 }
 
-enum ComputerState { defaultState, busy, maintenance, rendering, available }
+enum ComputerState { defaultState, busy, maintenance, rendering, available, hafifa }
 
 Map menuOptionsMap = {
   'Busy': ComputerState.busy,
   'Maintenance': ComputerState.maintenance,
   'Rendering': ComputerState.rendering,
   'Available': ComputerState.available,
+  'Hafifa': ComputerState.hafifa,
 };
 
 class Computer {
@@ -326,7 +329,7 @@ class _ComputerButtonState extends State<ComputerButton> {
         padding: const EdgeInsets.fromLTRB(0.0, 0.0, 0.0, 0.0),
         child: const IconButton(
           iconSize: 30.0,
-          icon: Icon(Icons.computer, color: Colors.black),
+          icon: Icon(Icons.computer, color: Colors.white),
           onPressed:
               null, // The popup menu will be shown when the button is tapped
         ),
